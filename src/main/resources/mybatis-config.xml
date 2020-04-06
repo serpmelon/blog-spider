@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    一些配置，如：驼峰命名、懒加载、开启二级缓存-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"></setting>
+        <setting name="aggressiveLazyLoading" value="false"></setting>
+        <setting name="cacheEnabled" value="true"></setting>
+    </settings>
+<!--    JDBC配置，可以有多份（对应生产环境、开发环境、测试环境等），使用default属性切换-->
+    <environments default="dev">
+        <environment id="dev">
+<!--            事务管理器-->
+            <transactionManager type="JDBC"/>
+<!--            数据源，这里配置为连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        以下三个配置等效-->
+        <mapper class="mybatis.UserService"/>
+        <!--mapper resource="mybatis\UserService.xml"/-->
+        <!--mapper package="mybatis"/-->
+    </mappers>
+</configuration>
